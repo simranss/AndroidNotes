@@ -7,7 +7,7 @@
 ### Recommended
 
 1. Android Notes For Professionals - Unknown website
-2. Android Studio 3.0 Development Essential (Android 8 Edition)
+2. Android Studio 4.0 Development Essential - Java Edition
 3. Android Cookbook: Problems and solutions for anroid developers
 
 ### Others
@@ -47,11 +47,30 @@ You can view the official documentation for a function or any declaration by pla
 You can reformat the code by pressing `Ctrl + Alt + L`.
 This helps a lot for files too big for formatting one line at a time.
 
-## App Components
+## App Anatomy
 
 ### Activities
 
 A single screen with UI. An android app may have multiple activities.
+
+### Fragments
+
+An activity, as described above, typically represents a single user interface screen within an app.
+One option is to construct the activity using a single user interface layout and one corresponding activity class file.
+A better alternative, however, is to break the activity into different sections.
+Each of these sections is referred to as a fragment, each of which consists of part of the user interface layout and a matching class file (declared as a
+subclass of the Android Fragment class).
+In this scenario, an activity simply becomes a container into which one or more fragments are embedded.
+
+### Intents
+
+Intents are the mechanism by which one activity is able to launch another and implement the flow through the activities that make up an application.
+Intents can be explicit, in that they request the launch of a specific activity by referencing the activity by class name, or implicit by stating either the type of action to be performed or providing data of a specific type on which the action is to be performed.
+
+### Broadcast Intents
+
+Another type of Intent, the Broadcast Intent, is a system wide intent that is sent out to all applications that have
+registered an “interested” Broadcast Receiver.
 
 ### Services
 
@@ -134,6 +153,26 @@ protected void onRestoreInstanceState(Bundle savedInstanceState) {
 }
 ```
 
+## View Bindings
+
+To use view bindings, The following steps are required:
+
+1. Gradle Scripts -> build.gradle (Module: app) file
+2. inside the `buildFeatures` write `viewBinding = true`
+3. Replace some lines of code in the main avtivityclass.file:
+
+```java
+public class MainActivity extends AppCompatActivity {
+private ActivityMainBinding binding;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+binding = ActivityMainBinding.inflate(getLayoutInflater());
+View view = binding.getRoot();
+setContentView(view);
+}
+```
+
 ## TextView
 
 ### Spannable TextView
@@ -182,4 +221,10 @@ textview.setText(spannable);
 String sampleText = "This is a test strike";
 textView.setPaintFlags(tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 textView.setText(sampleText);
+```
+
+#### Strikethrough part of text
+
+```java
+String sampleText = "This is a test strike"
 ```
