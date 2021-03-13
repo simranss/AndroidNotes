@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Android Developements.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<!-- title: Android Development -->
+<h1 id="android-development">Android Development</h1>
+<h2 id="books">Books</h2>
+<h3 id="recommended">Recommended</h3>
+<ol>
+<li>Android Notes For Professionals - Unknown website</li>
+<li>Android Studio 4.0 Development Essential - Java Edition</li>
+<li>Android Cookbook: Problems and solutions for anroid developers</li>
+</ol>
+<h3 id="others">Others</h3>
+<ol>
+<li>Professional Android - Reto Meier</li>
+<li>Android Programming: Pushing the limits - Erik Hellman</li>
+<li>Android aaplication Development all-in-one for dummies</li>
+<li>Android Security Cookbook - Keith Makan</li>
+<li>Android Programming - The big nerd ranch guide</li>
+</ol>
+<h2 id="custom-colors-for-logcat-messages">Custom colors for Logcat messages</h2>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>File -&gt; Settings -&gt; Editor -&gt; Color Scheme -&gt; Android Logcat</li>
+<li>Choose the option from the left side for the type of logcat message.</li>
+<li>Uncheck the option <code>Inherit values from</code> in the right side.</li>
+<li>Choose the color in the <code>Foreground</code>.</li>
+</ol>
+<h2 id="some-useful-things-for-the-editor">Some useful things for the editor</h2>
+<h3 id="splitting-the-editor">Splitting the editor</h3>
+<p>You can split the editor by right-clicking the file you want to split and choose the option from the menu.</p>
+<h3 id="parameters">Parameters</h3>
+<p>You can know what parameters does a function want by keeping the cursor within the paranthesis and pressing <code>Ctrl + P</code>.
+Extremely useful since half of the time one needs to find about the parameters on the internet.</p>
+<h3 id="documentation">Documentation</h3>
+<p>You can view the official documentation for a function or any declaration by placing the cursor over the declaration and pressing <code>Ctrl + Q</code>.</p>
+<h3 id="reformatting">Reformatting</h3>
+<p>You can reformat the code by pressing <code>Ctrl + Alt + L</code>.
+This helps a lot for files too big for formatting one line at a time.</p>
+<h2 id="app-anatomy">App Anatomy</h2>
+<h3 id="activities">Activities</h3>
+<p>A single screen with UI. An android app may have multiple activities.</p>
+<h3 id="fragments">Fragments</h3>
+<p>An activity, as described above, typically represents a single user interface screen within an app.
+One option is to construct the activity using a single user interface layout and one corresponding activity class file.
+A better alternative, however, is to break the activity into different sections.
+Each of these sections is referred to as a fragment, each of which consists of part of the user interface layout and a matching class file (declared as a
+subclass of the Android Fragment class).
+In this scenario, an activity simply becomes a container into which one or more fragments are embedded.</p>
+<h3 id="intents">Intents</h3>
+<p>Intents are the mechanism by which one activity is able to launch another and implement the flow through the activities that make up an application.
+Intents can be explicit, in that they request the launch of a specific activity by referencing the activity by class name, or implicit by stating either the type of action to be performed or providing data of a specific type on which the action is to be performed.</p>
+<h3 id="broadcast-intents">Broadcast Intents</h3>
+<p>Another type of Intent, the Broadcast Intent, is a system wide intent that is sent out to all applications that have
+registered an “interested” Broadcast Receiver.</p>
+<h3 id="services">Services</h3>
+<p>A service runs in background. There are two types of services:</p>
+<ol>
+<li>Foreground: Service that runs in the background but informing the user about it.</li>
+<li>Background: Service that runs in the background and doesn't necessarily inform the user about it.</li>
+</ol>
+<p>Examples:</p>
+<ul>
+<li>a music player would be running in the background even after the applcation is closed, but informs the user about the process through a notification. (foreground)</li>
+<li>a service that downloads data from the internet in background (background)</li>
+</ul>
+<h3 id="content-providers">Content Providers</h3>
+<p>it manages shared app data. Through content providers, other apps can query or even modify the data stroed by an app.</p>
+<h3 id="broadcast-receivers">Broadcast Receivers</h3>
+<p>It responds to system-wide broadcast of announcements (eg: a broadcast announcong that the screen has turned off, the battery is low, etc).
+Broadcast receivers don't have UI but they can show notification to alert the user.</p>
+<h2 id="activity-lifecycle">Activity Lifecycle</h2>
+<h3 id="oncreatebundle-savedinstancestate"><code>onCreate(Bundle savedInstanceState)</code></h3>
+<p>This method is called when the activity is created.
+This is the ideal location to perform most of the initialization tasks.</p>
+<h3 id="onrestart"><code>onRestart()</code></h3>
+<p>This method is called when the activity is about to restart after having previously stopped by the runtime system.</p>
+<h3 id="onstart"><code>onStart()</code></h3>
+<p>This method is called immediately after the <code>onCreate()</code> or <code>onRestart()</code> methods.
+This method indicates that the activity is about to become visible to user.
+This call is followed by a call to <code>onResume()</code> or <code>onStop()</code> depending if the activity moves to the top of the activity stack or is pushed down the stack by another activity.</p>
+<h3 id="onresume"><code>onResume()</code></h3>
+<p>This method is called to indicate that the activity is now at the top of the activity stack and is the activity with which the user is interacting.</p>
+<h3 id="onpause"><code>onPause()</code></h3>
+<p>This method is called to indicate that a previous activity is about to become the foreground activity.
+This call will be followed by a call to either the <code>onResume()</code> or <code>onStop()</code> method depending on whether the activity moves back to the foreground or becomes invisible to the user.</p>
+<h3 id="onstop"><code>onStop()</code></h3>
+<p>This method is called when the activity is now no longer visible to the user.
+The two possible scenarios that may follow this call are a call to <code>onRestart()</code> in the event that the activity moves to the foreground again, or <code>onDestroy()</code> if the activity is being terminated.</p>
+<h3 id="ondestroy"><code>onDestroy()</code></h3>
+<p>This method is called when the activity is about to get destroyed.</p>
+<h2 id="saving-and-restoring-the-state-of-an-activity">Saving and restoring the state of an activity</h2>
+<h3 id="saving">Saving</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">@override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSaveInstanceState</span><span class="hljs-params">(Bundle outState)</span> </span>{
+  <span class="hljs-keyword">super</span>.onSaveInstanceState(outState);
+  <span class="hljs-comment">//Suppose you want to save the text entered by the user in an editText</span>
+  CharSequence userText = editText.getText();
+  outState.putCharSequence(<span class="hljs-string">"userText"</span>, userText);
+}
+</div></code></pre>
+<h3 id="restoring">Restoring</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRestoreInstanceState</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+  <span class="hljs-keyword">super</span>.onRestoreInstanceState(savedInstanceState);
+  CharSequence userText = savedInstanceState.getCharSequence(<span class="hljs-string">"userText"</span>);
+  editText.setText(userText);
+}
+</div></code></pre>
+<h2 id="view-bindings">View Bindings</h2>
+<p>To use view bindings, The following steps are required:</p>
+<ol>
+<li>Gradle Scripts -&gt; build.gradle (Module: app) file</li>
+<li>inside the <code>buildFeatures</code> write <code>viewBinding = true</code></li>
+<li>Replace some lines of code in the main avtivityclass.file:</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{
+<span class="hljs-keyword">private</span> ActivityMainBinding binding;
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+<span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+binding = ActivityMainBinding.inflate(getLayoutInflater());
+View view = binding.getRoot();
+setContentView(view);
+}
+</div></code></pre>
+<h2 id="textview">TextView</h2>
+<h3 id="spannable-textview">Spannable TextView</h3>
+<h4 id="spannable-color">Spannable color</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">//initialise the textView</span>
+TextView textView = findViewById(R.id.text_view);
+
+<span class="hljs-comment">//initialise the spannable</span>
+Spannable spannable = <span class="hljs-keyword">new</span> SpannableString(firstWord + lastWord);
+
+<span class="hljs-comment">//color for the first word</span>
+spannable.setSpan(<span class="hljs-keyword">new</span> ForegroundColorSpan(firstWordColor), <span class="hljs-number">0</span>, firstWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+<span class="hljs-comment">//color for the second word</span>
+spannable.setSpan(<span class="hljs-keyword">new</span> ForegroundColorSpan(lastWordColor), firstWord.length(), (firstWord.length() + lastWord.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+<span class="hljs-comment">//set the text of the textView as the spannable</span>
+textView.setText(spannable);
+</div></code></pre>
+<h4 id="spannable-font">Spannable font</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">//initialise the textView</span>
+TextView textView = findViewById(R.id.text_view);
+
+<span class="hljs-comment">//initialise the spannable</span>
+Spannable spannable = <span class="hljs-keyword">new</span> SpannableString(firstWord + lastWord);
+
+<span class="hljs-comment">//font size for the first word</span>
+spannable.setSpan(<span class="hljs-keyword">new</span> RelativeSizeSpan(<span class="hljs-number">1.1f</span>), <span class="hljs-number">0</span>, firstWord.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+<span class="hljs-comment">//font size for the second word</span>
+spannable.setSpan(<span class="hljs-keyword">new</span> RelativeSizeSpan(<span class="hljs-number">0.8f</span>), firstWord.length(), (firstWord.length() + lastWord.length()), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+<span class="hljs-comment">//set the text of the textView as the spannable</span>
+textview.setText(spannable);
+</div></code></pre>
+<h3 id="strikethrough-textview">Strikethrough TextView</h3>
+<h4 id="strikethrough-the-entire-text">Strikethrough the entire text</h4>
+<pre class="hljs"><code><div>String sampleText = <span class="hljs-string">"This is a test strike"</span>;
+textView.setPaintFlags(tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+textView.setText(sampleText);
+</div></code></pre>
+<h4 id="strikethrough-part-of-text">Strikethrough part of text</h4>
+<pre class="hljs"><code><div>String sampleText = <span class="hljs-string">"This is a test strike"</span>
+</div></code></pre>
+
+</body>
+</html>
